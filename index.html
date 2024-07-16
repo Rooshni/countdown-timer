@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>Timed Google Form</title>
+  <style>
+    #countdown {
+      font-size: 24px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <iframe src="https://docs.google.com/forms/d/e/10VWFYL3ibx2C_XicVKuf-EXHu0VIQC16QJ-0kpptRM0/viewform?embedded=true" width="640" height="480" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  <div id="countdown">25:00</div>
+  <script>
+    var timeLeft = 25 * 60;
+    var countdownElement = document.getElementById('countdown');
+
+    var countdownTimer = setInterval(function() {
+      var minutes = Math.floor(timeLeft / 60);
+      var seconds = timeLeft % 60;
+      countdownElement.textContent = minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdownTimer);
+        alert("Time's up! The form will now close.");
+        // Redirect to a "time's up" page or handle as needed
+        window.location.href = "https://docs.google.com/forms/d/e/10VWFYL3ibx2C_XicVKuf-EXHu0VIQC16QJ-0kpptRM0/closedform"; // Optionally, redirect to the form's closed URL
+      }
+      timeLeft--;
+    }, 1000);
+  </script>
+</body>
+</html>
